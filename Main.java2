@@ -1,0 +1,40 @@
+Begin
+    Declare n, i, harga[100], minHarga, maxKeuntungan, hariBeli, hariJual As Integer
+
+    Output "Masukkan jumlah hari: "
+    Input n
+
+    Output "Masukkan harga saham untuk setiap hari:"
+    For i = 1 to n Do
+        Output "Hari ke-", i, ": "
+        Input harga[i]
+    End For
+
+    // Inisialisasi nilai awal
+    minHarga = harga[1]
+    maxKeuntungan = 0
+    hariBeli = 1
+    hariJual = 1
+
+    // Loop untuk mencari keuntungan maksimal
+    For i = 2 to n Do
+        If harga[i] < minHarga Then
+            minHarga = harga[i]
+            hariBeli = i
+        End If
+
+        If (harga[i] - minHarga) > maxKeuntungan Then
+            maxKeuntungan = harga[i] - minHarga
+            hariJual = i
+        End If
+    End For
+
+    // Cek apakah ada keuntungan
+    If maxKeuntungan > 0 Then
+        Output "Waktu terbaik membeli: Hari ke-", hariBeli, " dengan harga ", harga[hariBeli]
+        Output "Waktu terbaik menjual: Hari ke-", hariJual, " dengan harga ", harga[hariJual]
+        Output "Keuntungan maksimum: ", maxKeuntungan
+    Else
+        Output "Tidak ada peluang keuntungan."
+    End If
+End
